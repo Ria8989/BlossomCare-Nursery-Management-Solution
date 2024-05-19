@@ -162,7 +162,7 @@
     form.addEventListener("submit", () => {
         event.preventDefault()
         let x = document.getElementById("seedId").value;
-        let url = `http://localhost:8085/seedsById/${x}`;
+        let url = `http://localhost:8085/api/seedsById/${x}`;
         fetch(url, {
             method: "GET",
             headers: {

@@ -245,7 +245,7 @@
 
     pushData.addEventListener("click", () => {
         let id = planterId.value;
-        fetch(`http://localhost:8085/planters/${id}`, {
+        fetch(`http://localhost:8085/api/planters/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

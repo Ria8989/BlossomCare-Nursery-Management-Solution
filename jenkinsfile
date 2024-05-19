@@ -1,0 +1,85 @@
+pipeline {
+    agent any
+
+    environment{
+        DOCKER_IMAGE_NAME_FRONTEND = 'ria8989/frontend-repo'
+        DOCKER_IMAGE_NAME_BACKEND = 'ria8989/backend-repo'
+        DOCKER_IMAGE_NAME_DATABASE = 'ria8989/mysql-image'
+        GITHUB_REPO_URL = 'https://github.com/kumaranjalij/ReviewRadar.git'
+        DOCKERHUB_CREDENTIALS = credentials('DockerHubCred')
+    }
+
+    stages {
+        stage('GIT CHECKOUT') {
+            steps {
+                script {
+                        // Checkout the code from the GitHub repo 
+                        git branch: 'main', credentialsId: 'ReviewRadar-webhook', url: "${GITHUB_REPO_URL}"
+                }
+            }
+        }
+  
+        
+	stage('BACKEND BUILD') {
+	    steps {
+		    sh 'export SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/plant?createDatabaseIfNotExist=true'
+		    sh 'export SPRING_DATASOURCE_USERNAME=root'
+		    sh 'export SPRING_DATASOURCE_PASSWORD=riya@root'
+
+            	    sh 'mvn clean install'
+	    }
+	}
+
+
+        stage('BUILD DOCKER IMAGES') {
+            steps {
+        	script {
+        	     // Build and tag backend Docker image
+                     sh 'docker build -t backend-image -f ./PlantAndPlanters/Dockerfile .'
+                        
+                     // Build and tag frontend Docker image
+                     sh 'docker build -t frontend-image -f ./Plant And Planters Frontend/Dockerfile .'
+                     
+                     sh 'docker build -t mysql-image -f Dockerfile .'
+                }
+            }
+        }
+
+        stage('PUSH DOCKER IMAGE') {
+            steps {
+		script{
+                    docker.withRegistry('', 'DockerHubKey') {
+                    sh 'docker tag backend-image ria8989/backend-repo'
+                    sh 'docker push ria8989/backend-repo'
+                    
+                    sh 'docker tag frontend-image ria8989/frontend-repo'
+                    sh 'docker push ria8989/frontend-repo'
+                    
+                    sh 'docker tag mysql-image ria8989/mysql-image'
+                    sh 'docker push ria8989/mysql-repo'
+                    }
+                }
+            
+                // Remove image
+                sh "docker rmi -f ria8989/backend-repo || true"
+                sh "docker rmi -f ria8989/frontend-repo || true"
+                sh "docker rmi -f ria8989/mysql-image || true"
+                sh "docker rmi -f backend-image || true"
+                sh "docker rmi -f frontend-image || true"
+                sh "docker rmi -f mysql-image || true"
+            }
+        }
+        
+
+        stage('RUN ANSIBLE PLAYBOOK') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: './ansible/deploy.yml',
+                        inventory: './ansible/inventory'
+                    )
+                }
+            }
+        }
+    }
+}

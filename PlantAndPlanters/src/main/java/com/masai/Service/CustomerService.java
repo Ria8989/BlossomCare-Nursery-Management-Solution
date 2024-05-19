@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.masai.Entity.Customer;
 import com.masai.Exception.CustomerException;
+import org.springframework.stereotype.Component;
 
 public interface CustomerService {
 

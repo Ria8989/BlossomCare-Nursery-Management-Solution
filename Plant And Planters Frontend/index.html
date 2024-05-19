@@ -8,6 +8,8 @@
     <title>PLANT & PLANTERS</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="/images/P&P Logo.png" type="image/icon type">
+
+    
 </head>
 
 <body>
@@ -21,13 +23,19 @@
             <div>
                 <div>
                     <p>Online Slots Availability | Store Locator | Contact Us</p>
-                    <a href="user login/signup.html">
-                        <button>Login / Register</button>
-                    </a>
+                    <div id="loginButtons">
+                        <a href="user login/signup.html" id="loginRegisterLink">
+                            <button>Login / Register</button>
+                        </a>
+                    </div>
+                    <div id="logoutButton" style="display: none;">
+                        <button id="logout">Logout</button>
+                    </div>
                 </div>
                 <div>
                     <input type="text" oninput="search()" placeholder="Search Products here..." id="searchproduct">
-                    <a href="/admin/admin_signup.html">
+                    <!-- <a href="/admin/admin_signup.html"> -->
+                    <a>
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO5aKJrxEbbY7x3DIsU1_Pwb3Wz9j3ntWIARQF-CM1gw&s">
                     </a>
@@ -57,12 +65,12 @@
         <div>
             <a href="/products/planters.html">SHOP PLANTERS</a>
         </div>
-        <div>
+        <!-- <div>
             <a href="/user login/signup.html">USER MENU</a>
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
             <a href="/admin/admin_signup.html">ADMIN LOGIN</a>
-        </div>
+        </div> -->
     </div>
 
 
@@ -175,6 +183,8 @@
 
 <script>
 
+
+
     let products = [];
 
     let fav = JSON.parse(localStorage.getItem("favourites")) || [];
@@ -189,7 +199,64 @@
             products = data;
         });
 
+        if (localStorage.getItem('userLoginObj')) {
+            // If user is logged in, show the logout button and hide the login/register button
+            document.getElementById('loginButtons').style.display = 'none';
+            document.getElementById('logoutButton').style.display = 'block';
+        }
 
+        // // Logout function
+        // document.getElementById('logout').addEventListener('click', function() {
+        //     // Remove user information from localStorage
+        //     localStorage.removeItem('userLoginObj');
+        //     // Show login/register button and hide logout button
+        //     document.getElementById('loginButtons').style.display = 'block';
+        //     document.getElementById('logoutButton').style.display = 'none';
+        // });
+
+
+        function logout() {
+
+            document.getElementById('loginButtons').style.display = 'block';
+            document.getElementById('logoutButton').style.display = 'none';
+            // Retrieve userLoginObj from local storage
+
+            
+            const userLoginObj = JSON.parse(localStorage.getItem('userLoginObj'));
+            if (!userLoginObj || !userLoginObj.token) {
+                console.error('No user login data found');
+                return;
+            }
+            
+            // Call the adminLogout endpoint
+            fetch(`http://localhost:8085/api/logout?token=${userLoginObj.token}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to index.html if logout was successful
+                    
+                    window.location.href = '/index.html';
+                    
+                } else {
+                    // Handle error if necessary
+                    console.error('Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+            localStorage.removeItem('userLoginObj');
+        }
+
+        // Add click event listener to logout button at the top
+        document.getElementById('logoutButton').addEventListener('click', logout);
+
+    
     function search() {
         let search = document.querySelector("#searchproduct").value;
 
@@ -203,6 +270,8 @@
             displayProducts(newdata);
         }
     }
+
+    
 
     function displayProducts(data) {
         document.querySelector("#container").innerHTML = "";

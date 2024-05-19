@@ -167,7 +167,7 @@
                 <input required type="number" id="planterStock" placeholder="Planter Stock" />
                 <input required type="number" id="planterCost" placeholder="Planter Cost" />
             </div>
-            <div class="left-container">
+            <!-- <div class="left-container">
                 <h4>Add Seed Details</h4>
                 <input required type="text" id="seedCommonName" placeholder="Common Name" />
                 <input required type="text" id="seedBloomTime" placeholder="Bloom Time" />
@@ -193,7 +193,7 @@
                 <input required type="text" id="plantDescription" placeholder="Plant Description" />
                 <input required type="text" id="plantsStock" placeholder="Plant Stock" />
                 <input required type="text" id="plantCost" placeholder="Plant Cost" />
-            </div>
+            </div> -->
         </div>
 
         <button id="add_Planter" class="u-full-width button button-primary">Add Planter</button>
@@ -216,33 +216,33 @@
     let planterStock = document.getElementById('planterStock');
     let planterCost = document.getElementById('planterCost');
 
-    let seedCommonName = document.getElementById("seedCommonName");
-    let seedBloomTime = document.getElementById('seedBloomTime');
-    let watering = document.getElementById('watering');
-    let seedDifficultyLevel = document.getElementById('seedDifficultyLevel');
-    let seedTemperature = document.getElementById('seedTemperature');
-    let typeOfSeeds = document.getElementById('typeOfSeeds');
-    let seedsDescription = document.getElementById('seedsDescription');
-    let seedsStock = document.getElementById('seedsStock');
-    let seedsCost = document.getElementById('seedsCost');
-    let seedsPerPacket = document.getElementById('seedsPerPacket');
+    // let seedCommonName = document.getElementById("seedCommonName");
+    // let seedBloomTime = document.getElementById('seedBloomTime');
+    // let watering = document.getElementById('watering');
+    // let seedDifficultyLevel = document.getElementById('seedDifficultyLevel');
+    // let seedTemperature = document.getElementById('seedTemperature');
+    // let typeOfSeeds = document.getElementById('typeOfSeeds');
+    // let seedsDescription = document.getElementById('seedsDescription');
+    // let seedsStock = document.getElementById('seedsStock');
+    // let seedsCost = document.getElementById('seedsCost');
+    // let seedsPerPacket = document.getElementById('seedsPerPacket');
 
-    let plantHeight = document.getElementById("plantHeight");
-    let plantSpread = document.getElementById('plantSpread');
-    let commonName = document.getElementById('commonName');
-    let bloomTime = document.getElementById('bloomTime');
-    let medicinalOrCulinaryUse = document.getElementById('medicinalOrCulinaryUse');
-    let difficultyLevel = document.getElementById('difficultyLevel');
-    let temperature = document.getElementById('plantTemperature');
-    let typeOfPlant = document.getElementById('typeOfPlant');
-    let plantDescription = document.getElementById('plantDescription');
-    let plantsStock = document.getElementById('plantsStock');
-    let plantCost = document.getElementById('plantCost');
+    // let plantHeight = document.getElementById("plantHeight");
+    // let plantSpread = document.getElementById('plantSpread');
+    // let commonName = document.getElementById('commonName');
+    // let bloomTime = document.getElementById('bloomTime');
+    // let medicinalOrCulinaryUse = document.getElementById('medicinalOrCulinaryUse');
+    // let difficultyLevel = document.getElementById('difficultyLevel');
+    // let temperature = document.getElementById('plantTemperature');
+    // let typeOfPlant = document.getElementById('typeOfPlant');
+    // let plantDescription = document.getElementById('plantDescription');
+    // let plantsStock = document.getElementById('plantsStock');
+    // let plantCost = document.getElementById('plantCost');
 
     let responseObj = {};
 
     pushData.addEventListener("click", () => {
-        fetch("http://localhost:8085/planters", {
+        fetch("http://localhost:8085/api/planters", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -255,31 +255,31 @@
                 planterShape: planterShape.value,
                 planterStock: planterStock.value,
                 planterCost: planterCost.value,
-                seeds: {
-                    commonName: seedCommonName.value,
-                    bloomTime: seedBloomTime.value,
-                    watering: watering.value,
-                    difficultyLevel: seedDifficultyLevel.value,
-                    temperature: seedTemperature.value,
-                    typeOfSeeds: typeOfSeeds.value,
-                    seedsDescription: seedsDescription.value,
-                    seedsStock: seedsStock.value,
-                    seedsCost: seedsCost.value,
-                    seedsPerPacket: seedsPerPacket.value,
-                },
-                plants: {
-                    plantHeight: plantHeight.value,
-                    plantSpread: plantSpread.value,
-                    commonName: commonName.value,
-                    bloomTime: bloomTime.value,
-                    medicinalOrCulinaryUse: medicinalOrCulinaryUse.value,
-                    difficultyLevel: difficultyLevel.value,
-                    temperature: temperature.value,
-                    typeOfPlant: typeOfPlant.value,
-                    plantDescription: plantDescription.value,
-                    plantsStock: plantsStock.value,
-                    plantCost: plantCost.value
-                }
+                // seeds: {
+                //     commonName: seedCommonName.value,
+                //     bloomTime: seedBloomTime.value,
+                //     watering: watering.value,
+                //     difficultyLevel: seedDifficultyLevel.value,
+                //     temperature: seedTemperature.value,
+                //     typeOfSeeds: typeOfSeeds.value,
+                //     seedsDescription: seedsDescription.value,
+                //     seedsStock: seedsStock.value,
+                //     seedsCost: seedsCost.value,
+                //     seedsPerPacket: seedsPerPacket.value,
+                // },
+                // plants: {
+                //     plantHeight: plantHeight.value,
+                //     plantSpread: plantSpread.value,
+                //     commonName: commonName.value,
+                //     bloomTime: bloomTime.value,
+                //     medicinalOrCulinaryUse: medicinalOrCulinaryUse.value,
+                //     difficultyLevel: difficultyLevel.value,
+                //     temperature: temperature.value,
+                //     typeOfPlant: typeOfPlant.value,
+                //     plantDescription: plantDescription.value,
+                //     plantsStock: plantsStock.value,
+                //     plantCost: plantCost.value
+                // }
             })
         }).then((e) => {
             if (e.status == 200 || e.status == 201) {

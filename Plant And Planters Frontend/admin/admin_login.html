@@ -128,7 +128,7 @@
     SignupForm.addEventListener("submit", () => {
         event.preventDefault()
 
-        fetch("http://localhost:8085/adminLogin", {
+        fetch("http://localhost:8085/api/adminLogin", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

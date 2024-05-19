@@ -1,0 +1,1 @@
+import { hideLoginButton } from './index.html';

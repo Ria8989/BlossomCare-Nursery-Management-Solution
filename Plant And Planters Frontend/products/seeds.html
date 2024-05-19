@@ -56,7 +56,7 @@
       <!-- Dont change order of columns -->
       <thead>
         <tr>
-          <th>Image</th>
+          <!-- <th>Image</th> -->
           <th>commonName</th>
           <th>bloomTime</th>
           <th>watering</th>
@@ -85,9 +85,9 @@
     todoarr.forEach(function (elem) {
       // document.querySelector("tbody").innerHTML= "";     If we do this here, it will lead to updation of earh tds
       let row = document.createElement("tr");
-      let image = document.createElement("td");
-      image.innerHTML = `<img src=${elem.url}>`;
-      image.setAttribute("class", "planterImg");
+      // let image = document.createElement("td");
+      // image.innerHTML = `<img src=${elem.url}>`;
+      // image.setAttribute("class", "planterImg");
       let td1 = document.createElement("td");
       td1.innerText = elem.commonName;
       let td2 = document.createElement("td");
@@ -115,14 +115,15 @@
 
       td11.addEventListener("click", addToCart(elem));
 
-      row.append(image, td1, td2, td3, td4, td5, td6, td7, td8,td9,td10,td11);
+      row.append(td1, td2, td3, td4, td5, td6, td7, td8,td9,td10,td11);
+      // row.append(image, td1, td2, td3, td4, td5, td6, td7, td8,td9,td10,td11);
 
       document.querySelector("tbody").append(row);
     });
   }
 
   window.addEventListener("load", () => {
-    fetch("http://localhost:8085/seeds", {
+    fetch("http://localhost:8085/api/seeds", {
       method: "GET",
       headers: {
         "content-type": "application/json",

@@ -109,7 +109,7 @@ function getData(todoarr) {
     let responseObj = [];
 
     window.addEventListener("load", () => {
-        fetch("http://localhost:8085/seeds", {
+        fetch("http://localhost:8085/api/seeds", {
             method: "GET",
             headers: {
                 "content-type": "application/json",

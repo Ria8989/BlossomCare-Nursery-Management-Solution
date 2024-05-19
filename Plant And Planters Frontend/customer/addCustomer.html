@@ -209,7 +209,7 @@
     let responseObj = {};
 
     pushData.addEventListener("click", () => {
-        fetch("http://localhost:8085/customers", {
+        fetch("http://localhost:8085/api/customers", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -253,11 +253,12 @@
             } else {
                 responseObj = data;
                 console.log(responseObj);
-                alert(data.messeage);
+                alert(data.description);
             }
 
 
         }).catch((error) => console.log(error));
+    // }).catch((error) => alert(error.description));
     })
 
 </script>

@@ -203,7 +203,7 @@
 
     pushData.addEventListener("click", () => {
         let id = seedId.value;
-        fetch(`http://localhost:8085/seeds/${id}`, {
+        fetch(`http://localhost:8085/api/seeds/${id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

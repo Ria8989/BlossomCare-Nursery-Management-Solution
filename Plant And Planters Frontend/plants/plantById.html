@@ -163,7 +163,7 @@
     form.addEventListener("submit", () => {
         event.preventDefault()
         let x = document.getElementById("planterId").value;
-        let url = `http://localhost:8085/plants/${x}`;
+        let url = `http://localhost:8085/api/plants/${x}`;
         fetch(url, {
             method: "GET",
             headers: {

@@ -115,8 +115,10 @@
 
 </html>
 
-<script>
 
+<script>
+    
+    
     let userLoginObj = {};
 
     let SignupForm = document.querySelector('#form');
@@ -130,7 +132,7 @@
     SignupForm.addEventListener("submit", () => {
         event.preventDefault()
 
-        fetch("http://localhost:8085/login", {
+        fetch("http://localhost:8085/api/login", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -142,14 +144,20 @@
         }).then((e) => {
             if (e.status == 200 || e.status == 201) {
                 alert("Login Successfull");
+                
+                console.log("Before redirection");
                 window.location.href = "/index.html";
+                console.log("After redirection");
+                
             }
             return e.json();
         }).then((data) => {
             if (data.messeage) {
                 alert(data.messeage);
                 if(data.messeage == "User already Logged In with this username"){
+                    
                     window.location.href = "/index.html";
+                   
                 }
             } else {
                 // stringifying the myCountryInfo object and 

@@ -12,7 +12,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public Cart addToCart(Integer CustomerId, Integer productId, Cart cart) throws CustomerException, CartException {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

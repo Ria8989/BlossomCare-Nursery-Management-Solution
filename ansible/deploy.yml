@@ -1,0 +1,22 @@
+---
+- name: Deploying Review Radar on the kubernetes cluster
+  hosts: localhost
+  remote_user: riya
+  become: false
+  tasks:    
+    - name: Deleting older application files
+      ansible.builtin.shell: |
+        kubectl delete -f ../manifest/mysql-deployment.yml -n my-app --ignore-not-found=true
+        kubectl delete -f ../manifest/backend-deployment.yml -n my-app --ignore-not-found=true
+        kubectl delete -f ../manifest/frontend-deployment.yml -n my-app --ignore-not-found=true
+        kubectl delete -f ../manifest/my-ingress.yml -n my-app --ignore-not-found=true
+        
+    - name: Deploying application to kubernetes cluster
+      ansible.builtin.shell: |
+        kubectl create namespace my-app
+	kubectl config set-context --current --namespace=my-app
+        kubectl apply -f ../manifest/mysql-deployment.yml -n my-app
+        kubectl apply -f ../manifest/backend-deployment.yml -n my-app
+        kubectl apply -f ../manifest/frontend-deployment.yml -n my-app
+        kubectl apply -f ../manifest/my-ingress.yml -n my-app
+        kubectl port-forward service/backend 8085:8085

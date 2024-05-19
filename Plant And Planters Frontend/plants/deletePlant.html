@@ -165,7 +165,7 @@
         event.preventDefault()
         let x = document.getElementById("plantId");
         console.log(x.value);
-        let url = `http://localhost:8085/plants/${x.value}`;
+        let url = `http://localhost:8085/api/plants/${x.value}`;
         fetch(url, {
             method: "DELETE",
             headers: {
