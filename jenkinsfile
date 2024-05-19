@@ -20,6 +20,7 @@ pipeline {
         
 	stage('BACKEND BUILD') {
 	    steps {
+	    	    sh 'cd PlantAndPlanters/'
 		    sh 'export SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/plant?createDatabaseIfNotExist=true'
 		    sh 'export SPRING_DATASOURCE_USERNAME=root'
 		    sh 'export SPRING_DATASOURCE_PASSWORD=riya@root'
