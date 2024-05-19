@@ -6,10 +6,12 @@
   tasks:
     - name: Ensure Kubernetes context is set
       ansible.builtin.shell: |
+        export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         kubectl config use-context minikube
 
     - name: Deleting older application files
       ansible.builtin.shell: |
+        export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         kubectl delete -f ../manifest/mysql-deployment.yml -n my-app --ignore-not-found=true
         kubectl delete -f ../manifest/backend-deployment.yml -n my-app --ignore-not-found=true
         kubectl delete -f ../manifest/frontend-deployment.yml -n my-app --ignore-not-found=true
@@ -17,6 +19,7 @@
         
     - name: Deploying application to kubernetes cluster
       ansible.builtin.shell: |
+        export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         kubectl create namespace my-app || true
         kubectl config set-context --current --namespace=my-app
         kubectl apply -f ../manifest/mysql-deployment.yml -n my-app
