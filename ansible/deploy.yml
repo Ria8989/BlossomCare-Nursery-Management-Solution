@@ -27,7 +27,7 @@
     - name: Wait for MySQL pod to be ready
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
-        kubectl wait --for=condition=ready pod -l app=mysql -n my-app --timeout=120s
+        kubectl wait --for=condition=ready pod -l app=mysql -n my-app --timeout=600s
 
     - name: Deploying backend to Kubernetes cluster
       ansible.builtin.shell: |
@@ -37,7 +37,7 @@
     - name: Wait for backend pod to be ready
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
-        kubectl wait --for=condition=ready pod -l app=backend -n my-app --timeout=120s
+        kubectl wait --for=condition=ready pod -l app=backend -n my-app --timeout=600s
 
     - name: Deploying frontend and ingress to Kubernetes cluster
       ansible.builtin.shell: |
@@ -48,7 +48,7 @@
     - name: Wait for frontend pod to be ready
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
-        kubectl wait --for=condition=ready pod -l app=frontend -n my-app --timeout=120s
+        kubectl wait --for=condition=ready pod -l app=frontend -n my-app --timeout=600s
 
     - name: Port forward backend service
       ansible.builtin.shell: |
