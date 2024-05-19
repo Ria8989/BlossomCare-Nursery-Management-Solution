@@ -20,13 +20,19 @@ pipeline {
         
 	stage('BACKEND BUILD') {
 	    steps {
-	    	    sh 'cd PlantAndPlanters/'
-		    sh 'export SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/plant?createDatabaseIfNotExist=true'
-		    sh 'export SPRING_DATASOURCE_USERNAME=root'
-		    sh 'export SPRING_DATASOURCE_PASSWORD=riya@root'
-
-            	    sh 'mvn clean install'
-	    }
+                // Change to the directory containing the pom.xml file
+                dir('PlantAndPlanters') {
+                    // Set environment variables
+                    withEnv([
+                        'SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/plant?createDatabaseIfNotExist=true',
+                        'SPRING_DATASOURCE_USERNAME=root',
+                        'SPRING_DATASOURCE_PASSWORD=riya@root'
+                    ]) {
+                        // Run the Maven build
+                        sh 'mvn clean install'
+                    }
+                }
+            }
 	}
 
 
