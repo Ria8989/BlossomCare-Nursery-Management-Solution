@@ -4,6 +4,15 @@
   remote_user: riya
   become: false
   tasks:
+    - name: Fix permissions on .minikube directory
+      ansible.builtin.shell: |
+        sudo chown -R $USER:$USER $HOME/.minikube
+        sudo chmod -R u+wrx $HOME/.minikube
+
+    - name: Start Minikube
+      ansible.builtin.shell: |
+        minikube start
+
     - name: Ensure Kubernetes context is set
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
@@ -54,3 +63,4 @@
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         pgrep -f "kubectl port-forward service/backend 8085:8085 -n my-app" || nohup kubectl port-forward service/backend 8085:8085 -n my-app > /dev/null 2>&1 &
+

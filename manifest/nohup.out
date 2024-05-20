@@ -9,3 +9,83 @@ error: lost connection to pod
 Forwarding from 127.0.0.1:8085 -> 8085
 Forwarding from [::1]:8085 -> 8085
 Handling connection for 8085
+E0520 22:29:58.001247  216563 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:29:58.004438  216563 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:29:58.007291  216563 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:29:58.010266  216563 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+Error from server (Forbidden): <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:32:56.676981  220329 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:32:56.681788  220329 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:32:56.685917  220329 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+E0520 22:32:56.710312  220329 memcache.go:265] couldn't get current server API group list: <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
+Error from server (Forbidden): <html><head><meta http-equiv='refresh' content='1;url=/login?from=%2Fapi%3Ftimeout%3D32s'/><script>window.location.replace('/login?from=%2Fapi%3Ftimeout%3D32s');</script></head><body style='background-color:white; color:white;'>
+
+
+Authentication required
+<!--
+-->
+
+</body></html>
