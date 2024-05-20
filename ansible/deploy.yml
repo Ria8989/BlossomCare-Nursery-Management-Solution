@@ -13,20 +13,16 @@
       ansible.builtin.shell: |
         minikube start
         
-    - name: Check if Minikube has started completely
-      ansible.builtin.shell: |
-        minikube status --format='{{.Kubelet}}' | grep -q "Running"
-      register: minikube_running
-      until: minikube_running.rc == 0
-      retries: 20
-      delay: 20
+    - name: Wait for Minikube to start completely
+      ansible.builtin.wait_for_connection:
+      timeout: 400
+      delegate_to: localhost
 
     - name: Ensure Kubernetes context is set
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         kubectl config use-context minikube
-      when: minikube_running.rc == 0
-
+      
     - name: Deleting older application files
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
@@ -34,7 +30,6 @@
         kubectl delete -f ../manifest/backend-deployment.yml -n my-app --ignore-not-found=true
         kubectl delete -f ../manifest/frontend-deployment.yml -n my-app --ignore-not-found=true
         kubectl delete -f ../manifest/my-ingress.yml -n my-app --ignore-not-found=true
-      when: minikube_running.rc == 0
         
     - name: Deploying MySQL to Kubernetes cluster
       ansible.builtin.shell: |
@@ -42,8 +37,7 @@
         kubectl create namespace my-app || true
         kubectl config set-context --current --namespace=my-app
         kubectl apply -f ../manifest/mysql-deployment.yml -n my-app
-      when: minikube_running.rc == 0
-
+      
     - name: Wait for MySQL pod to be ready
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
