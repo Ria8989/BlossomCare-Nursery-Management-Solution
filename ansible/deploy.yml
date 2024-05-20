@@ -15,7 +15,7 @@
         
     - name: Check if Minikube has started completely
       ansible.builtin.shell: |
-        minikube status --format={{.Kubelet}} | grep -q "Running"
+        minikube status --format='{{.Kubelet}}' | grep -q "Running"
       register: minikube_running
       until: minikube_running.rc == 0
       retries: 20
