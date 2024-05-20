@@ -2,9 +2,6 @@ pipeline {
     agent any
 
     environment{
-        DOCKER_IMAGE_NAME_FRONTEND = 'ria8989/frontend-repo'
-        DOCKER_IMAGE_NAME_BACKEND = 'ria8989/backend-repo'
-        DOCKER_IMAGE_NAME_DATABASE = 'ria8989/mysql-image'
         GITHUB_REPO_URL = 'https://github.com/Ria8989/BlossomCare-Nursery-Management-Solution.git'    
         KUBECONFIG = '/var/lib/jenkins/.minikube/profiles/minikube/config'
     }
@@ -82,13 +79,11 @@ pipeline {
         stage('RUN ANSIBLE PLAYBOOK') {
             steps {
                 script {
-                    //sh 'sudo chown -R jenkins:jenkins $HOME/.minikube'
-                    //sh 'chmod -R u+wrx $HOME/.minikube'
-                    sh 'sudo chown -R $USER /home/riya/.minikube' 
-                    sh 'sudo chmod -R u+wrx /home/riya/.minikube'
-                    sh 'minikube delete && minikube start'
-                    sh 'kubectl config get-contexts'
-                    sh 'kubectl config use-context minikube'
+                    //sh 'sudo chown -R $USER /home/riya/.minikube' 
+                    //sh 'sudo chmod -R u+wrx /home/riya/.minikube'
+                    //sh 'minikube start'
+                    //sh 'kubectl config get-contexts'
+                    //sh 'kubectl config use-context minikube'
                     ansiblePlaybook(
                         playbook: './ansible/deploy.yml',
                         inventory: './ansible/inventory'
@@ -96,5 +91,7 @@ pipeline {
                 }
             }
         }
+       
+        
     }
 }
