@@ -15,7 +15,7 @@
         
     - name: Wait for Minikube to start completely
       ansible.builtin.wait_for_connection:
-      timeout: 400
+      timeout: 600
       delegate_to: localhost
 
     - name: Ensure Kubernetes context is set
