@@ -5,7 +5,9 @@ pipeline {
         DOCKER_IMAGE_NAME_FRONTEND = 'ria8989/frontend-repo'
         DOCKER_IMAGE_NAME_BACKEND = 'ria8989/backend-repo'
         DOCKER_IMAGE_NAME_DATABASE = 'ria8989/mysql-image'
-        GITHUB_REPO_URL = 'https://github.com/Ria8989/BlossomCare-Nursery-Management-Solution.git'    }
+        GITHUB_REPO_URL = 'https://github.com/Ria8989/BlossomCare-Nursery-Management-Solution.git'    
+        KUBECONFIG = '/var/lib/jenkins/.minikube/profiles/minikube/config'
+    }
 
     stages {
         stage('GIT CHECKOUT') {
@@ -39,11 +41,12 @@ pipeline {
         stage('BUILD DOCKER IMAGES') {
             steps {
         	script {
+        	         sh 'pwd'
         	     // Build and tag backend Docker image
                      sh 'docker build -t backend-image -f ./PlantAndPlanters/Dockerfile .'
                         
                      // Build and tag frontend Docker image
-                     sh 'docker build -t frontend-image -f ./Plant And Planters Frontend/Dockerfile .'
+                     sh 'docker build -t frontend-image -f ./PlantAndPlantersFrontend/Dockerfile .'
                      
                      sh 'docker build -t mysql-image -f Dockerfile .'
                 }
@@ -61,7 +64,7 @@ pipeline {
                     sh 'docker push ria8989/frontend-repo'
                     
                     sh 'docker tag mysql-image ria8989/mysql-image'
-                    sh 'docker push ria8989/mysql-repo'
+                    sh 'docker push ria8989/mysql-image'
                     }
                 }
             
@@ -79,6 +82,13 @@ pipeline {
         stage('RUN ANSIBLE PLAYBOOK') {
             steps {
                 script {
+                    //sh 'sudo chown -R jenkins:jenkins $HOME/.minikube'
+                    //sh 'chmod -R u+wrx $HOME/.minikube'
+                    sh 'sudo chown -R $USER /home/riya/.minikube' 
+                    sh 'sudo chmod -R u+wrx /home/riya/.minikube'
+                    sh 'minikube delete && minikube start'
+                    sh 'kubectl config get-contexts'
+                    sh 'kubectl config use-context minikube'
                     ansiblePlaybook(
                         playbook: './ansible/deploy.yml',
                         inventory: './ansible/inventory'
