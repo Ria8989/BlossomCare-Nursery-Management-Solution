@@ -1,0 +1,11 @@
+Forwarding from 127.0.0.1:8085 -> 8085
+Forwarding from [::1]:8085 -> 8085
+error: Service frontend does not have a service port 8080
+Unable to listen on port 8085: Listeners failed to create with the following errors: [unable to create listener: Error listen tcp4 127.0.0.1:8085: bind: address already in use unable to create listener: Error listen tcp6 [::1]:8085: bind: address already in use]
+error: unable to listen on any of the requested ports: [{8085 8085}]
+Handling connection for 8085
+E0520 20:16:31.771958   20146 portforward.go:409] an error occurred forwarding 8085 -> 8085: error forwarding port 8085 to pod 2ded893d9f388499a11511ee60bc05456e5078c0265d9c73a281ce65b6b3d938, uid : Error response from daemon: No such container: 2ded893d9f388499a11511ee60bc05456e5078c0265d9c73a281ce65b6b3d938
+error: lost connection to pod
+Forwarding from 127.0.0.1:8085 -> 8085
+Forwarding from [::1]:8085 -> 8085
+Handling connection for 8085
