@@ -37,11 +37,17 @@
         kubectl create namespace my-app || true
         kubectl config set-context --current --namespace=my-app
         kubectl apply -f ../manifest/mysql-deployment.yml -n my-app
+      register: deploy_output
       
     - name: Wait for MySQL pod to be ready
       ansible.builtin.shell: |
         export KUBECONFIG=/var/lib/jenkins/.minikube/profiles/minikube/config
         kubectl wait --for=condition=ready pod -l app=mysql -n my-app --timeout=600s
+      register: wait_output
+      failed_when: "'error' in wait_output.stderr.lower()"
+      retries: 20  # Increase the number of retries
+      delay: 30    # Increase the delay between retries
+      until: wait_output.rc == 0
 
     - name: Deploying backend to Kubernetes cluster
       ansible.builtin.shell: |
