@@ -1,7 +1,7 @@
 ---
 - name: Deploying BlossomCare on the Kubernetes cluster
   hosts: localhost
-  remote_user: riya
+  remote_user: srishti
   become: false
   tasks:
     - name: Fix permissions on .minikube directory
