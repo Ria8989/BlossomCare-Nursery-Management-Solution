@@ -25,7 +25,7 @@ pipeline {
                     withEnv([
                         'SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/plant?createDatabaseIfNotExist=true',
                         'SPRING_DATASOURCE_USERNAME=root',
-                        'SPRING_DATASOURCE_PASSWORD=riya@root'
+                        'SPRING_DATASOURCE_PASSWORD=227797'
                     ]) {
                         // Run the Maven build
                         sh 'mvn clean install'
@@ -54,21 +54,21 @@ pipeline {
             steps {
 		script{
                     docker.withRegistry('', 'DockerHubKey') {
-                    sh 'docker tag backend-image ria8989/backend-repo'
-                    sh 'docker push ria8989/backend-repo'
+                    sh 'docker tag backend-image 0srishtiyadav0/backend-repo'
+                    sh 'docker push 0srishtiyadav0/backend-repo'
                     
-                    sh 'docker tag frontend-image ria8989/frontend-repo'
-                    sh 'docker push ria8989/frontend-repo'
+                    sh 'docker tag frontend-image 0srishtiyadav0/frontend-repo'
+                    sh 'docker push 0srishtiyadav0/frontend-repo'
                     
-                    sh 'docker tag mysql-image ria8989/mysql-image'
-                    sh 'docker push ria8989/mysql-image'
+                    sh 'docker tag mysql-image 0srishtiyadav0/mysql-image'
+                    sh 'docker push 0srishtiyadav0/mysql-image'
                     }
                 }
             
                 // Remove image
-                sh "docker rmi -f ria8989/backend-repo || true"
-                sh "docker rmi -f ria8989/frontend-repo || true"
-                sh "docker rmi -f ria8989/mysql-image || true"
+                sh "docker rmi -f 0srishtiyadav0/backend-repo || true"
+                sh "docker rmi -f 0srishtiyadav0/frontend-repo || true"
+                sh "docker rmi -f 0srishtiyadav0/mysql-image || true"
                 sh "docker rmi -f backend-image || true"
                 sh "docker rmi -f frontend-image || true"
                 sh "docker rmi -f mysql-image || true"
