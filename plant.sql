@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
 --
 -- Host: localhost    Database: plant
 -- ------------------------------------------------------
--- Server version	8.0.36-0ubuntu0.22.04.1
+-- Server version	8.0.35-0ubuntu0.23.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` VALUES (1,NULL,'','','','',NULL,''),(1,1,'Home','Barwani','Mahaveer Nagar','123',451551,'MP');
+INSERT INTO `address` VALUES (1,2,'work','haridwar','jwalapur','b573',123,'uttarakhand'),(1,1,'home','Haridwar','jurs','a 301',123,'uttarakhand');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `admin` (
   `password` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'Adminpass123','riyap@gmail.com');
+INSERT INTO `admin` VALUES (1,'A123!','srishti@gmail.com');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,6 @@ CREATE TABLE `current_admin_session` (
 
 LOCK TABLES `current_admin_session` WRITE;
 /*!40000 ALTER TABLE `current_admin_session` DISABLE KEYS */;
-INSERT INTO `current_admin_session` VALUES (1,'2024-04-11 11:32:31.633446','7ZLdWn');
 /*!40000 ALTER TABLE `current_admin_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +190,6 @@ CREATE TABLE `current_user_session` (
 
 LOCK TABLES `current_user_session` WRITE;
 /*!40000 ALTER TABLE `current_user_session` DISABLE KEYS */;
-INSERT INTO `current_user_session` VALUES (1,'2024-04-02 20:00:51.025277','qWom9b');
 /*!40000 ALTER TABLE `current_user_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,7 +218,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Riya Patidar','riya@gmail.com',1,'9617598947','Passw0rd123','user123');
+INSERT INTO `customer` VALUES (1,'SRISHTI','sri@example.com',1,'9999999999','Abcd1234','srishti');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,7 +318,7 @@ CREATE TABLE `plant` (
   `temperature` varchar(255) DEFAULT NULL,
   `type_of_plant` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`plant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +327,7 @@ CREATE TABLE `plant` (
 
 LOCK TABLES `plant` WRITE;
 /*!40000 ALTER TABLE `plant` DISABLE KEYS */;
-INSERT INTO `plant` VALUES (1,'Morning','Rose','Medium','NA',100,'Give beautiful red flowers',50,20,3,'30 degrees','Flowering'),(2,'Morning','Roses','Medium','NA',150,'Gives red rose flowers',40,20,6,'30 degree','Flowring');
+INSERT INTO `plant` VALUES (1,'morning','roses','medium','yes',200,'good plant',40,3,20,'35 degree','flowering');
 /*!40000 ALTER TABLE `plant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,7 +355,7 @@ CREATE TABLE `planter` (
   KEY `FKbwpooqb6tye7l6rmxqpnjp4rb` (`seeds_seed_id`),
   CONSTRAINT `FKbwpooqb6tye7l6rmxqpnjp4rb` FOREIGN KEY (`seeds_seed_id`) REFERENCES `seed` (`seed_id`),
   CONSTRAINT `FKldw7s3wtaxdy43mv7mmhsmhq0` FOREIGN KEY (`plants_plant_id`) REFERENCES `plant` (`plant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,7 +364,7 @@ CREATE TABLE `planter` (
 
 LOCK TABLES `planter` WRITE;
 /*!40000 ALTER TABLE `planter` DISABLE KEYS */;
-INSERT INTO `planter` VALUES (1,6,50,'Brown',200,10,'Circular',5,NULL,2,1);
+INSERT INTO `planter` VALUES (1,6,6,'brown',200,3,'round',6,NULL,1,1),(2,6,10,'value_here',200,7,'value_here',300,NULL,NULL,NULL),(3,8,9,'briwn',200,8,'gol',200,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `planter` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,7 +397,7 @@ CREATE TABLE `seed` (
 
 LOCK TABLES `seed` WRITE;
 /*!40000 ALTER TABLE `seed` DISABLE KEYS */;
-INSERT INTO `seed` VALUES (1,'Morning','Roses','Medium',50,'Gives red rose flowers',20,5,'30 degree','Flowering','Daily');
+INSERT INTO `seed` VALUES (1,'morning','roses','medium',20,'seed are good',30,40,'35 degree','round','2 times');
 /*!40000 ALTER TABLE `seed` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -412,4 +410,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 15:55:15
+-- Dump completed on 2024-05-25 11:09:28
